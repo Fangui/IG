@@ -239,6 +239,10 @@ namespace TeensUnitForm
             }
             return true;
         }
+        static bool check_country(string country)
+        {
+            return country == "England" || country == "UK" || country == "United Kingdom" || country == "Ireland" || country == "Wales" || country == "Scotland";
+        }
         // .............................................................................................................
 
         public Form1()
