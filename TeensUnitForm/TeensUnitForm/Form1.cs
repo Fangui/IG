@@ -228,6 +228,17 @@ namespace TeensUnitForm
                 return number.Length == 10;
             else return false;
         }
+        static bool notforbiddenword(string txt)
+        {
+
+            string verif = txt.ToLower();
+
+            if (samename(verif, "azerty") || samename(verif, "qwerty") || samename(verif, "hitler") || samename(verif, "nazi"))
+            {
+                return false;
+            }
+            return true;
+        }
         // .............................................................................................................
 
         public Form1()
