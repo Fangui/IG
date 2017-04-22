@@ -148,6 +148,77 @@ namespace TeensUnitForm
             return true;
         }
 
+        static bool check_mail(string mail)
+        {
+            int length = mail.Length;
+            int i = 0;
+            while (i < length && mail[i] != '@')
+            {
+                i++;
+            }
+            while (i < length && mail[i] != '.')
+            {
+                i++;
+            }
+            string s = "";
+            while (i < length)
+            {
+                s += mail[i];
+                i += 1;
+            }
+            return s == ".com" || s == ".ac.uk" || s == ".uk";
+        }
+        static bool check_condition(string s)
+        {
+            int count = 0;
+            foreach (char c in s)
+            {
+                if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+                    count += 1;
+            }
+            return count > 2;
+        }
+
+        static bool check_postcode(string post)
+        {
+            string s = "";
+            foreach (char c in post)
+            {
+                if (c >= 'A' && c <= 'Z')
+                    s += 'L';
+                else if (c >= '0' && c <= '9')
+                    s += 'N';
+            }
+            if (s.Length != post.Length)
+                return false;
+            string[] area = new string[] { "LN", "LNN", "LLN", "LLNN", "LNL", "LLNL", "LLL" };
+            int length = s.Length - 1;
+            if (length < 4)
+                return false;
+            int outward = length - 4;
+            if (s[length] != 'L' || post[length] == 'C' || post[length] == 'I' || post[length] == 'M' || post[length] == 'O' || post[length] == 'V')
+                return false;
+            length--;
+            if (s[length] != 'L' || post[length] == 'C' || post[length] == 'I' || post[length] == 'M' || post[length] == 'O' || post[length] == 'V')
+                return false;
+            length--;
+            if (s[length] != 'N')
+                return false;
+            string s2 = "";
+            for (int j = 0; j < length; j++)
+                s2 += s[j];
+            int i = 0;
+            int length2 = area.Length;
+            bool check = false;
+            while (i < length2 && !check)
+            {
+                check = area[i] == s2;
+                i++;
+            }
+            Console.WriteLine(s2);
+            return check;
+        }
+
 
 
 
