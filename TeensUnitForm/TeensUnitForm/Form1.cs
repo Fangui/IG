@@ -65,6 +65,23 @@ namespace TeensUnitForm
             return true;
         }
 
+        public static bool checkName(string s)
+        {
+            string line;
+            Dictionary<string, string> openWith = new Dictionary<string, string>();
+
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(@"name.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                line = line.ToLower();
+                openWith.Add(line, "");
+            }
+            file.Close();
+            return openWith.ContainsKey(s);
+
+        }
+
         static bool samename(string name, string other)
         {
             int c = 0;
@@ -241,7 +258,8 @@ namespace TeensUnitForm
         }
         static bool check_country(string country)
         {
-            return country == "England" || country == "UK" || country == "United Kingdom" || country == "Ireland" || country == "Wales" || country == "Scotland";
+            country = country.ToLower();
+            return country == "england" || country == "uK" || country == "united kingdom" || country == "ireland" || country == "wales" || country == "scotland";
         }
         static bool voyelle(string txt)
         {
