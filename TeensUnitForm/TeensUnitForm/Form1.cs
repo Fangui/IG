@@ -243,6 +243,21 @@ namespace TeensUnitForm
         {
             return country == "England" || country == "UK" || country == "United Kingdom" || country == "Ireland" || country == "Wales" || country == "Scotland";
         }
+        static bool voyelle(string txt)
+        {
+            int l = txt.Length;
+            if (l >= 3)
+            {
+                for (int i = 0; i < l-2; i++)
+                {
+                    if (txt[i] == txt[i+1] && txt[i] == txt[i+2])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
         // .............................................................................................................
 
         public Form1()
