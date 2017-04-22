@@ -12,16 +12,19 @@ namespace TeensUnitForm
 {
     public partial class Form1 : Form
     {
-        public static bool checkBirth(string s1, string s2, string s3, short y, short m, short d)
+        public static bool checkBirth(string s1, string s2, string s3)
         {
             if (s1 == "" || s2 == "" || s3 == "")
                 return false;
-
+            string timestamp = DateTime.Now.ToString("dd/MM/yyyy");
+            short y = short.Parse(DateTime.Now.ToString("yyyy"));
+            short m = short.Parse(DateTime.Now.ToString("MM"));
+            short d = short.Parse(DateTime.Now.ToString("dd"));
             short Y = short.Parse(s1);
             short M = short.Parse(s2);
             short D = short.Parse(s3);
 
-            if (m == 2 && D > 27)
+            if (m == 2 && D > 28)
                 return false;
 
             if (m > 12 || m < 0 || D < 0 || D > 31)
@@ -219,11 +222,12 @@ namespace TeensUnitForm
             return check;
         }
 
-
-
-
-
-
+        static bool check_phone(string number)
+        {
+            if (number != null)
+                return number.Length == 10;
+            else return false;
+        }
         // .............................................................................................................
 
         public Form1()
